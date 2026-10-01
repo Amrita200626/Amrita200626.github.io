@@ -1,0 +1,982 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amrita Jyoti | Computer Science Portfolio</title>
+
+    <style>
+        :root {
+            --background: #FBFBFA;
+            --text: #171717;
+            --muted: #666660;
+            --border: #E5E5E0;
+            --accent: #EA580C;
+            --accent-light: #FFF1E8;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Helvetica, Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1080px, 90%);
+            margin: 0 auto;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(251, 251, 250, 0.97);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 0.92rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            padding: 105px 0 85px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 22px;
+            padding: 6px 12px;
+            color: var(--accent);
+            background: var(--accent-light);
+            border: 1px solid #F6D4C0;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            max-width: 800px;
+            margin-bottom: 25px;
+            font-size: clamp(2.8rem, 7vw, 5.3rem);
+            line-height: 1.02;
+            letter-spacing: -3px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-description {
+            max-width: 670px;
+            color: var(--muted);
+            font-size: 1.15rem;
+        }
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
+
+        section {
+            padding: 90px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-heading {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            gap: 50px;
+            margin-bottom: 45px;
+        }
+
+        .section-number {
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 2.1rem;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .section-intro {
+            max-width: 650px;
+            margin-top: 12px;
+            color: var(--muted);
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr);
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .about-text,
+        .goal-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 30px;
+        }
+
+        .about-text p {
+            margin-bottom: 17px;
+            color: var(--muted);
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Career / Learning Goal */
+
+        .goal-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid #F0C8AF;
+            border-top: 4px solid var(--accent);
+            background: linear-gradient(
+                145deg,
+                #FFFFFF 0%,
+                #FFF8F3 100%
+            );
+            box-shadow: 0 8px 24px rgba(23, 23, 23, 0.05);
+        }
+
+        .goal-label {
+            margin-bottom: 14px;
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .goal-card h3 {
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            line-height: 1.35;
+        }
+
+        .goal-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* =========================
+           ACTIVITIES / PROJECT CARDS
+        ========================= */
+
+        .activities {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .activity {
+            display: grid;
+            grid-template-columns: 190px minmax(0, 1fr);
+            gap: 35px;
+            padding: 28px 30px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .activity-number {
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .activity h3 {
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .activity p {
+            margin-bottom: 16px;
+            color: var(--muted);
+        }
+
+        /* Repository buttons */
+
+        .repo-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 15px;
+            background: var(--text);
+            color: var(--white);
+            border: 1px solid var(--text);
+            border-radius: 7px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .repo-button:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .skill {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 10px 15px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: #30302D;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .skill:hover {
+            border-color: var(--accent);
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+            padding: 45px;
+            background: var(--text);
+            color: var(--white);
+            border-radius: 16px;
+        }
+
+        .contact-box h2 {
+            margin-bottom: 10px;
+            font-size: 2rem;
+            line-height: 1.25;
+            letter-spacing: -0.8px;
+        }
+
+        .contact-box p {
+            max-width: 550px;
+            color: #BDBDB8;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 230px;
+        }
+
+        .contact-link {
+            padding: 11px 15px;
+            border: 1px solid #454541;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .contact-link:hover {
+            background: #292926;
+            border-color: var(--accent);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 28px 0;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* =========================
+           TABLET RESPONSIVENESS
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .container {
+                width: min(92%, 760px);
+            }
+
+            .section-heading {
+                grid-template-columns: 160px minmax(0, 1fr);
+                gap: 30px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .goal-card {
+                min-height: auto;
+            }
+
+            .activity {
+                grid-template-columns: 140px minmax(0, 1fr);
+                gap: 25px;
+            }
+
+            .skills-list {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .contact-box {
+                padding: 35px;
+            }
+        }
+
+        /* =========================
+           MOBILE RESPONSIVENESS
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: min(92%, 560px);
+            }
+
+            nav {
+                min-height: 65px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 75px 0 65px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.7rem, 12vw, 4rem);
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .section-heading {
+                display: block;
+                margin-bottom: 30px;
+            }
+
+            .section-number {
+                margin-bottom: 10px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-intro {
+                font-size: 0.95rem;
+            }
+
+            /* About cards stack vertically */
+
+            .about-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .about-text,
+            .goal-card {
+                width: 100%;
+                padding: 24px;
+            }
+
+            .goal-card {
+                border-top-width: 4px;
+            }
+
+            /* Activity/project cards stack vertically */
+
+            .activities {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .activity {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                padding: 24px;
+            }
+
+            .activity-number {
+                margin-bottom: 2px;
+            }
+
+            .activity h3 {
+                font-size: 1.1rem;
+            }
+
+            .activity p {
+                font-size: 0.94rem;
+            }
+
+            .repo-button {
+                width: 100%;
+                justify-content: center;
+                padding: 11px 14px;
+            }
+
+            /* Skills stack neatly */
+
+            .skills-list {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 9px;
+            }
+
+            .skill {
+                min-height: 46px;
+                padding: 9px 10px;
+                font-size: 0.85rem;
+            }
+
+            /* Contact stacks vertically */
+
+            .contact-box {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 28px 24px;
+                gap: 25px;
+            }
+
+            .contact-box h2 {
+                font-size: 1.65rem;
+            }
+
+            .contact-links {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .contact-link {
+                text-align: center;
+            }
+
+            footer .container {
+                flex-direction: column;
+            }
+        }
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 420px) {
+
+            .container {
+                width: 92%;
+            }
+
+            .hero h1 {
+                font-size: 2.65rem;
+            }
+
+            .eyebrow {
+                font-size: 0.75rem;
+            }
+
+            .about-text,
+            .goal-card,
+            .activity {
+                padding: 20px;
+            }
+
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+
+            .skill {
+                justify-content: flex-start;
+                text-align: left;
+                padding-left: 14px;
+            }
+
+            .contact-box {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Amrita<span>.</span></a>
+
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+
+                <div class="eyebrow">
+                    Computer Science &amp; Engineering
+                </div>
+
+                <h1>
+                    Hi, I'm <span>Amrita Jyoti.</span>
+                </h1>
+
+                <p class="hero-description">
+                    A 3rd-semester Computer Science and Engineering student
+                    building my foundation in programming, software development,
+                    version control, and algorithmic problem-solving.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- About -->
+        <section id="about">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-number">
+                        01 / About
+                    </div>
+
+                    <div>
+                        <h2 class="section-title">
+                            Learning through building.
+                        </h2>
+
+                        <p class="section-intro">
+                            My academic journey is focused on developing practical
+                            programming skills alongside a strong understanding
+                            of computer science fundamentals.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about-grid">
+
+                    <div class="about-text">
+                        <p>
+                            I am a 3rd-semester Computer Science and Engineering
+                            student with an interest in software development,
+                            programming, and data-related technologies.
+                        </p>
+
+                        <p>
+                            Through my academic activities, I have been developing
+                            hands-on experience with C programming, Git and GitHub,
+                            VS Code, data structures, algorithms, and collaborative
+                            development workflows.
+                        </p>
+
+                        <p>
+                            I use projects and structured practice to strengthen
+                            my understanding of programming concepts and to build
+                            a consistent technical foundation.
+                        </p>
+                    </div>
+
+                    <div class="goal-card">
+
+                        <div class="goal-label">
+                            Career / Learning Goal
+                        </div>
+
+                        <h3>
+                            Build a strong foundation in software development.
+                        </h3>
+
+                        <p>
+                            My current goal is to continue improving my programming,
+                            data structures, algorithms, and development workflow
+                            skills while gaining practical experience through
+                            academic projects and consistent problem-solving.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Activities -->
+        <section id="activities">
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div class="section-number">
+                        02 / Activities
+                    </div>
+
+                    <div>
+                        <h2 class="section-title">
+                            Academic work &amp; practice.
+                        </h2>
+
+                        <p class="section-intro">
+                            A record of the technical activities completed while
+                            building my development and problem-solving workflow.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="activities">
+
+                    <!-- Activity 1 -->
+                    <article class="activity">
+
+                        <div class="activity-number">
+                            Activity 01
+                        </div>
+
+                        <div>
+                            <h3>VS Code Setup</h3>
+
+                            <p>
+                                Set up the development environment, configured
+                                relevant extensions, and worked with VS Code to
+                                compile and run a C program.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <!-- Activity 2 -->
+                    <article class="activity">
+
+                        <div class="activity-number">
+                            Activity 02
+                        </div>
+
+                        <div>
+                            <h3>Git &amp; GitHub Setup</h3>
+
+                            <p>
+                                Learned version control fundamentals and used
+                                GitHub to publish a Hello World C repository.
+                            </p>
+
+                            <a
+                                class="repo-button"
+                                href="https://github.com/Amrita200626/Portfolio-buiding/blob/main/hello.c"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Hello World Repository
+                                <span>↗</span>
+                            </a>
+                        </div>
+
+                    </article>
+
+
+                    <!-- Activity 3 -->
+                    <article class="activity">
+
+                        <div class="activity-number">
+                            Activity 03
+                        </div>
+
+                        <div>
+                            <h3>GitLens &amp; Live Share</h3>
+
+                            <p>
+                                Explored version inspection and blame annotations
+                                using GitLens, along with multiplayer
+                                pair-programming through Live Share. The activity
+                                included collaboration around a greet() function
+                                and a README collaboration log.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <!-- Activity 4 -->
+                    <article class="activity">
+
+                        <div class="activity-number">
+                            Activity 04
+                        </div>
+
+                        <div>
+                            <h3>LeetCode Practice Repository</h3>
+
+                            <p>
+                                Created a structured practice repository for data
+                                structures and algorithms, tracking solutions
+                                involving arrays, strings, stacks, and complexity
+                                analysis.
+                            </p>
+
+                            <a
+                                class="repo-button"
+                                href="https://github.com/Amrita200626/Leet_Code_Solutions"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View LeetCode Repository
+                                <span>↗</span>
+                            </a>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Skills -->
+        <section id="skills">
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div class="section-number">
+                        03 / Skills
+                    </div>
+
+                    <div>
+                        <h2 class="section-title">
+                            Technical skills.
+                        </h2>
+
+                        <p class="section-intro">
+                            Technologies I am currently learning and working with.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="skills-list">
+
+                    <div class="skill">C</div>
+                    <div class="skill">Java</div>
+                    <div class="skill">Python</div>
+                    <div class="skill">SQL</div>
+                    <div class="skill">Git</div>
+                    <div class="skill">GitHub</div>
+                    <div class="skill">VS Code</div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div class="section-number">
+                        04 / Contact
+                    </div>
+
+                    <div>
+                        <h2 class="section-title">
+                            Find my work.
+                        </h2>
+
+                        <p class="section-intro">
+                            My GitHub profile and repositories contain the
+                            development work documented in this portfolio.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-box">
+
+                    <div>
+                        <h2>
+                            Let's connect through GitHub.
+                        </h2>
+
+                        <p>
+                            Explore my repositories and follow my progress as I
+                            continue learning and building with computer science.
+                        </p>
+                    </div>
+
+
+                    <div class="contact-links">
+
+                        <a
+                            class="contact-link"
+                            href="https://github.com/Amrita200626"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub Profile ↗
+                        </a>
+
+                        <a
+                            class="contact-link"
+                            href="https://github.com/Amrita200626/Portfolio-buiding/blob/main/hello.c"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Hello World Repository ↗
+                        </a>
+
+                        <a
+                            class="contact-link"
+                            href="https://github.com/Amrita200626/Leet_Code_Solutions"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            LeetCode Solutions ↗
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <span>© 2026 Amrita Jyoti</span>
+            <span>Computer Science &amp; Engineering</span>
+        </div>
+    </footer>
+
+</body>
+</html>
+```
